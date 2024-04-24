@@ -60,10 +60,10 @@ const Header = ({ backlink, editing, title, name }) => {
                             <h1 className="header__title" onClick={handleTitleClick}>
                                 {headerTitle}
                             </h1>
-                            <i id="flip" className="header__link header__link--right2" aria-label="flip deck" title="flip deck">
+                            <i id="flip" className="header__link header__link--right2" aria-label="flip deck" title="Flip Deck">
                                 <FaExchangeAlt />
                             </i>
-                            <a href={`#/edit/${cardName}`} className="header__link header__link--right1" title="edit deck">
+                            <a href={`#/edit/${cardName}`} className="header__link header__link--right1" title="Edit Deck">
                                 <BsPencilSquare />
                             </a>
                         </>

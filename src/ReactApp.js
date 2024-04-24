@@ -257,14 +257,14 @@ const handleHeaderKeyDown = (e) => {
         editing: editing || false,
         name: name || false
       };
-      return <div className="header" dangerouslySetInnerHTML={{ __html: headerTemplate(context) }}></div>;
+      return <div className="header"><HeaderTemplate {...context}/></div>;
     },
     question: function (qText, diff, isFlipped) {
       let context = {
         question: qText,
         difficulty: diff
       };
-      document.querySelector('.card__side--question').innerHTML = questionTemplate(context);
+      document.querySelector('.card__side--question').innerHTML = QuestionTemplate(context);
       document.querySelector('#maincard').classList.remove('card--flip');
       if (!isFlipped) {
         document.querySelector('.answer__input').value = '';
@@ -283,7 +283,7 @@ const handleHeaderKeyDown = (e) => {
         outcome: outcome,
         autocheck: autocheck
       };
-      document.querySelector('.card__side--answer').innerHTML = answerTemplate(context);
+      document.querySelector('.card__side--answer').innerHTML = AnswerTemplate(context);
       document.querySelector('#maincard').classList.add('card--flip');
       document.getElementById('checkAnswer').classList.add('js-hidden');
       document.getElementById('nextButtons').classList.remove('js-hidden');
@@ -309,7 +309,7 @@ const handleHeaderKeyDown = (e) => {
       for (i = 0; i < cardsRemaining; i++) {
         bars.push('incomplete');
       }
-      document.querySelector('.progress').innerHTML = progressTemplate({ bars: bars });
+      document.querySelector('.progress').innerHTML = ProgressTemplate({ bars: bars });
     },
     score: function (sessionInfo) {
       let context = {
@@ -318,7 +318,7 @@ const handleHeaderKeyDown = (e) => {
       };
       let retryButton = document.getElementById('retry');
       let scoreIndicator = document.querySelector('.score');
-      scoreIndicator.innerHTML = scoreTemplate(context);
+      scoreIndicator.innerHTML = ScoreTemplate(context);
       scoreIndicator.classList.remove('js-hidden');
       document.querySelector('.card').classList.add('js-hidden');
       document.querySelector('.answer__input').classList.add('js-hidden');
@@ -343,7 +343,7 @@ const handleHeaderKeyDown = (e) => {
         firstanswer: usersettings.firstanswer,
         autocheck: usersettings.autocheck
       };
-      document.querySelector(".main").innerHTML = addCardTemplate();
+      document.querySelector(".main").innerHTML = AddCardTemplate();
       for (let i = 0; i < decklength; i++) {
         let side1 = cards[i].side1.join(' / ');
         let side2 = cards[i].side2.join(' / ');
@@ -351,7 +351,7 @@ const handleHeaderKeyDown = (e) => {
         let index = i;
         Render.newCard(side1, side2, difficulty, index);
       }
-      document.querySelector(".modal").innerHTML = modalTemplate(mContext);
+      document.querySelector(".modal").innerHTML = ModalTemplate(mContext);
     },
     newCard: function (side1, side2, difficulty, index) {
       let context = {
@@ -360,7 +360,7 @@ const handleHeaderKeyDown = (e) => {
         side2: side2,
         difficulty: difficulty
       };
-      document.querySelector("#addCard").insertAdjacentHTML('afterend', editCardTemplate(context));
+      document.querySelector("#addCard").insertAdjacentHTML('afterend', EditCardTemplate(context));
     },
     deleteCard: function (cardToDelete) {
       document.querySelector('.main').removeChild(cardToDelete);

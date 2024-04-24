@@ -8,6 +8,8 @@ const HeaderTemplate = (backlink, editing, title, name, shorttitle) => {
         setEditedTitle(event.target.value);
     };
 
+    console.log(backlink, editing, title, name, shorttitle)
+
     return (
         <>
             {backlink && (

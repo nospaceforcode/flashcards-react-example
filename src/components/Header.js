@@ -1,7 +1,56 @@
 import React, { useState } from 'react';
 import { FaHome, FaCaretSquareRight, FaCog, FaExchangeAlt } from 'react-icons/fa';
 import { BsPencilSquare } from "react-icons/bs";
-import './style.css';
+import styled from 'styled-components';
+
+
+const HeaderLink = styled.a`
+    position: absolute;
+    margin: 0;
+    text-decoration: none;
+    color: #FDFFFC;
+    cursor: pointer;
+    ${props => props.left && `left: ${props.left};`}
+    ${props => props.right && `right: ${props.right};`}
+`
+
+const HeaderInputTitle = styled.input`
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #FDFFFC;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1em;
+    width: 50%;
+    text-transform: none;
+    color: #8DA7BE;
+    font-size: 24px;
+`
+
+const HeaderEditableTitle = styled.h1`
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #FDFFFC;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1em;
+`
+
+const HeaderTitle = styled.h1`
+    display: inline-block;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #FDFFFC;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1em;
+    font-size: 24px;
+    font-weight: 600;
+`
 
 const Header = ({ backlink, editing, title, name }) => {
     const [isBacklink] = useState(backlink);
@@ -31,14 +80,13 @@ const Header = ({ backlink, editing, title, name }) => {
     return (
         <header className="header" id="header">
             {isBacklink && (
-                <a href="/#" className="header__link header__link--left1">
+                <HeaderLink href="/#" left="10px">
                     <FaHome />
-                </a>
+                </HeaderLink>
             )}
             {isEditing ? (
                 <>
-                    <input
-                        className="header__title header__title--edit"
+                    <HeaderInputTitle 
                         type="text"
                         value={headerTitle}
                         onChange={handleTitleChange}
@@ -46,31 +94,31 @@ const Header = ({ backlink, editing, title, name }) => {
                         onBlur={handleTitleBlur}
                         autoFocus
                     />
-                    <a href={`#/train/${cardName}`} className="header__link header__link--right1">
+                    <HeaderLink href={`#/edit/${cardName}`} right="10px">
                         <FaCaretSquareRight />
-                    </a>
-                    <i id="deckSettings" className="header__link header__link--right2" data-name={cardName}>
+                    </HeaderLink>
+                    <HeaderLink id="deckSettings" right="60px">
                         <FaCog />
-                    </i>
+                    </HeaderLink>
                 </>
             ) : (
                 <>
                     {isBacklink ? (
                         <>
-                            <h1 className="header__title" onClick={handleTitleClick}>
+                            <HeaderEditableTitle onClick={handleTitleClick}>
                                 {headerTitle}
-                            </h1>
-                            <i id="flip" className="header__link header__link--right2" aria-label="flip deck" title="Flip Deck">
+                            </HeaderEditableTitle>
+                            <HeaderLink right="60px" id="flip" aria-label="flip deck" title="Flip Deck">
                                 <FaExchangeAlt />
-                            </i>
-                            <a href={`#/edit/${cardName}`} className="header__link header__link--right1" title="Edit Deck">
+                            </HeaderLink>
+                            <HeaderLink href={`#/edit/${cardName}`} right="10px" title="Edit Deck">
                                 <BsPencilSquare />
-                            </a>
+                            </HeaderLink>
                         </>
                     ) : (
-                        <h1 className="header__title header__title--main" onClick={handleTitleClick}>
+                        <HeaderTitle onClick={handleTitleClick}>
                             {headerTitle}
-                        </h1>
+                        </HeaderTitle>
                     )}
                 </>
             )}

@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import DeckMenu from './components/DeckMenu';
+import TrainPage from './components/TrainPage';
 
 function App() {
   const deckMenu = { deck:[
@@ -19,12 +20,8 @@ function App() {
     <div className="App">
       <Header {...context}/>
       <DeckMenu {...deckMenu} />
-      {/* <HeaderTemplate {...context} />
-      <TrainTemplate autocheck={false} />
-      <h1>Progress Template Example</h1>
-      <ProgressTemplate bars={bars} /> */}
+      <TrainPage autocheck={true}/>
     </div>
-
   );
 }
 

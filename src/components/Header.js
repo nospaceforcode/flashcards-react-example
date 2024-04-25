@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaHome, FaCaretSquareRight, FaCog, FaExchangeAlt } from 'react-icons/fa';
 import { BsPencilSquare } from "react-icons/bs";
 import styled from 'styled-components';
 
 
-const HeaderLink = styled.a`
+const HeaderLink = styled(Link)`
     position: absolute;
     margin: 0;
     text-decoration: none;
@@ -80,7 +81,7 @@ const Header = ({ backlink, editing, title, name }) => {
     return (
         <header className="header" id="header">
             {isBacklink && (
-                <HeaderLink href="/#" left="10px">
+                <HeaderLink to="/" left="10px">
                     <FaHome />
                 </HeaderLink>
             )}
@@ -94,7 +95,7 @@ const Header = ({ backlink, editing, title, name }) => {
                         onBlur={handleTitleBlur}
                         autoFocus
                     />
-                    <HeaderLink href={`#/edit/${cardName}`} right="10px">
+                    <HeaderLink to={`/edit/${cardName}`} right="10px">
                         <FaCaretSquareRight />
                     </HeaderLink>
                     <HeaderLink id="deckSettings" right="60px">
@@ -111,7 +112,7 @@ const Header = ({ backlink, editing, title, name }) => {
                             <HeaderLink right="60px" id="flip" aria-label="flip deck" title="Flip Deck">
                                 <FaExchangeAlt />
                             </HeaderLink>
-                            <HeaderLink href={`#/edit/${cardName}`} right="10px" title="Edit Deck">
+                            <HeaderLink to={`/edit/${cardName}`} right="10px" title="Edit Deck">
                                 <BsPencilSquare />
                             </HeaderLink>
                         </>

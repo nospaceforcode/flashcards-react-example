@@ -5,6 +5,24 @@ import { BsPencilSquare } from "react-icons/bs";
 import styled from 'styled-components';
 
 
+const HeaderBase = styled.header`
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    background-color: #8DA7BE;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
+    font-size: 28px;
+    font-family: 'Roboto', sans-serif;
+    color: #FDFFFC;
+`
+
 const HeaderLink = styled(Link)`
     position: absolute;
     margin: 0;
@@ -39,6 +57,9 @@ const HeaderEditableTitle = styled.h1`
     text-align: center;
     text-transform: uppercase;
     line-height: 1em;
+    &:focus {
+        color: #50514F;
+    }
 `
 
 const HeaderTitle = styled.h1`
@@ -79,7 +100,7 @@ const Header = ({ backlink, editing, title, name }) => {
     };
 
     return (
-        <header className="header" id="header">
+        <HeaderBase id="header">
             {isBacklink && (
                 <HeaderLink to="/" left="10px">
                     <FaHome />
@@ -123,7 +144,7 @@ const Header = ({ backlink, editing, title, name }) => {
                     )}
                 </>
             )}
-        </header>
+        </HeaderBase>
     );
 };
 

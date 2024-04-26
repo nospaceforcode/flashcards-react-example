@@ -86,7 +86,7 @@ const Header = ({ backlink, editing, title, name }) => {
     };
 
     const handleTitleClick = () => {
-        setEditing(true);
+        setEditing(true && backlink);
     };
 
     const handleTitleBlur = () => {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaTimes, FaCheck } from "react-icons/fa";
 import styled from 'styled-components';
 import './style.css';
 
@@ -130,6 +131,27 @@ const SubmitButton = styled(ButtonBase)`
     margin: 30px auto 0;
 `;
 
+const RetryButton = styled(ButtonBase)`
+    display: block;
+    width: 250px;
+    margin: 40px auto 0;
+    ${props => props.hidden && `display: none;`}
+`;
+
+const ShuffleButton = styled(ButtonBase)`
+    display: block;
+    width: 250px;
+    margin: 30px auto 0;
+    border: 1px solid #8DA7BE;
+    box-shadow: none;
+    color: #8DA7BE;
+    background-color: #FDFFFC;
+    &:hover {
+        background-color: #56728b;
+        color: #FDFFFC;
+    }
+`;
+
 const AnswerNext = styled.div`
     display: -webkit-box;
     display: -moz-box;
@@ -141,6 +163,29 @@ const AnswerNext = styled.div`
     justify-content: space-between;
     width: 300px;
     ${props => props.hidden && `display: none;`}
+`;
+
+const SelfCheckButton = styled.button`
+  position: relative;
+  box-sizing: border-box;
+  width: 48%;
+  margin: 30px 0 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 33px;
+    height: 36px;
+    border-left: 1px dashed #FDFFFC;
+  }
+`;
+
+const SelfCheckIcon = styled.i`
+  margin-right: 16px;
 `;
 
 const TrainPage = (autocheck) => {
@@ -158,7 +203,7 @@ const TrainPage = (autocheck) => {
             </Card>
             <Score hidden={true}></Score>
             <Answer >
-                <AnswerInput type="text" />
+                <AnswerInput type="text"/>
                 <SubmitButton id="checkAnswer">
                     Go &gt;
                 </SubmitButton>
@@ -169,24 +214,28 @@ const TrainPage = (autocheck) => {
                         </SubmitButton>
                     ) : (
                         <>
-                            <button id="wrongAnswer" className="button button--selfcheck" type="button">
-                                <i className="fa fa-times" aria-hidden="true"></i>
+                            <SelfCheckButton id="wrongAnswer" >
+                                <SelfCheckIcon aria-hidden="true">
+                                    <FaTimes />
+                                </SelfCheckIcon>
                                 I was wrong
-                            </button>
-                            <button id="correctAnswer" className="button button--selfcheck" type="button">
-                                <i className="fa fa-check" aria-hidden="true"></i>
+                            </SelfCheckButton>
+                            <SelfCheckButton id="correctAnswer" >
+                                <SelfCheckIcon aria-hidden="true">
+                                    <FaCheck />
+                                </SelfCheckIcon>
                                 I was right
-                            </button>
+                            </SelfCheckButton>
                         </>
                     )}
                 </AnswerNext>
             </Answer>
-            <button id="retry" className="button button--retry js-hidden">
+            <RetryButton id="retry" hidden={false}>
                 Retry Wrong Answers
-            </button>
-            <button id="shuffle" className="button button--shuffle">
+            </RetryButton>
+            <ShuffleButton id="shuffle" >
                 Shuffle and Start Again
-            </button>
+            </ShuffleButton>
         </>
     );
 };

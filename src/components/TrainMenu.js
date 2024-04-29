@@ -207,7 +207,7 @@ const TrainPage = (autocheck) => {
                 <SubmitButton id="checkAnswer">
                     Go &gt;
                 </SubmitButton>
-                <AnswerNext id="nextButtons" hidden={false}>
+                <AnswerNext id="nextButtons" hidden={true}>
                     {isAutoCheck ? (
                         <SubmitButton id="nextCard" >
                             Next

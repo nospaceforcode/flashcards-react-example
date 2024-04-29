@@ -4,8 +4,8 @@ import DeckMenu from '../components/DeckMenu';
 
 function LandingPage() {
     const deckMenu = { deck:[
-        { name: 'Deck1', shortname: 'D1', averageDifficulty: 3, cardLength: 20 },
-        { name: 'Deck2', shortname: 'D2', averageDifficulty: 2, cardLength: 15 },
+        { title: 'Deck One', name: 'Deck1', shortname: 'D1', averageDifficulty: 3, cardLength: 20 },
+        { title: 'Deck Two', name: 'Deck2', shortname: 'D2', averageDifficulty: 2, cardLength: 15 },
     ]};
     let context = {
         backlink: false,

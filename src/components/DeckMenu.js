@@ -126,10 +126,29 @@ const DeckMenu = ({ deck }) => {
             {deckList && deckList.map((item, index) => (
                 <DeckContainer key={index}>
                     <DeckContainerPadding />
-                    <DeckEditLink to={`/edit/${item.name}`} title="Edit Deck">
+                    <DeckEditLink to={{
+                            pathname: `/edit/${item.name}`
+                            }}
+                            state={{
+                                title: item.title,
+                                name: item.name,
+                                shorttitle: item.shortname,
+                                editing: true,
+                                backlink: true
+                        }} title="Edit Deck">
                         <BsPencilSquare className="fa-lg"/>
                     </DeckEditLink>
-                    <DeckLink to={`/train/${item.name}`}>
+                    <DeckLink to={
+                            {pathname: `/train/${item.name}`}
+                        }
+                        state={{
+                            title: item.title,
+                            name: item.name,
+                            shorttitle: item.shortname,
+                            editing: false,
+                            backlink: true
+                        }}
+                    >
                         <DeckTitle>{item.shortname}</DeckTitle>
                         <DeckDifficulty title="difficulty">{difficon(item.averageDifficulty, item.name)}</DeckDifficulty>
                         <DeckNumofCards>{item.cardLength} cards</DeckNumofCards>

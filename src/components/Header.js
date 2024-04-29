@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome, FaCaretSquareRight, FaCog, FaExchangeAlt } from 'react-icons/fa';
 import { BsPencilSquare } from "react-icons/bs";
@@ -98,6 +98,11 @@ const Header = ({ backlink, editing, title, name }) => {
             setEditing(false);
         }
     };
+
+    useEffect(() => {
+        setTitle(title);
+        setEditing(editing);
+    }, [backlink, editing, title, name]);
 
     return (
         <HeaderBase id="header">

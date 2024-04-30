@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaTimes, FaCheck } from "react-icons/fa";
 import styled from 'styled-components';
 import QuestionCard from './QuestionCard';
+import AnswerCard from './AnswerCard';
 // import './style.css';
 
 const ProgressBar = styled.div`
@@ -201,7 +202,9 @@ const TrainPage = (autocheck) => {
                     <CardSide $cardtype={"question"} >
                         <QuestionCard difficulty="1" question="What is the capital of France?" />
                     </CardSide>
-                    <CardSide $cardtype={"answer"} ></CardSide>
+                    <CardSide $cardtype={"question"} >
+                        <AnswerCard autocheck={isAutoCheck} outcome="correct" difficulty="1" answers={["Paris"]} />
+                    </CardSide>
                 </div>
             </Card>
             <Score hidden={true}></Score>

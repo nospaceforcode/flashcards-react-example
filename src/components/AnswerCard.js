@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import './style.css';
 import { difficon } from '../components/Chore';
 
 
@@ -42,17 +43,22 @@ const CardText = styled.p`
     text-align: center;
 `;
 
-
-const QuestionCard = ({ difficulty, question }) => {
+const AnswerCard = ({ autocheck, outcome, difficulty, answers }) => {
     return (
         <>
             <DifficultyLevel>
                 <DifficultyText key={"DifficultyText"}>Difficulty:</DifficultyText>
-                <DifficultyIcon key={"DifficultyIcon"}>{difficon(difficulty, question)}</DifficultyIcon>
+                <DifficultyIcon key={"DifficultyIcon"}>{difficon(difficulty, answers)}</DifficultyIcon>
             </DifficultyLevel>
-            <CardText>{question}</CardText>
+            <CardText>
+                {answers.map((answer, index) => (
+                    <React.Fragment key={index}>
+                        {answer}<br />
+                    </React.Fragment>
+                ))}
+            </CardText>
         </>
     );
 };
 
-export default QuestionCard;
+export default AnswerCard;

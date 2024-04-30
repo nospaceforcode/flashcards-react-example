@@ -4,6 +4,7 @@ import styled from "styled-components"
 import QuestionCard from "./QuestionCard"
 import AnswerCard from "./AnswerCard"
 import ScoreContent from "./ScoreContent"
+import ProgressContent from "./ProgressContent"
 // import './style.css';
 
 const ProgressBar = styled.div`
@@ -202,7 +203,9 @@ const TrainPage = (autocheck) => {
     const [isAutoCheck] = useState(autocheck)
     return (
         <>
-            <ProgressBar />
+            <ProgressBar>
+                <ProgressContent bars={["correct", "incorrect", "incomplete"]} />
+            </ProgressBar>
             <Card id="card">
                 <CardStack $num={1} />
                 <CardStack $num={2} />

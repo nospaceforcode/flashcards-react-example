@@ -15,7 +15,7 @@ const QuestionCard = ({ difficulty, question }) => {
     )
 }
 QuestionCard.propTypes = {
-    difficulty: PropTypes.number.isRequired,
+    difficulty: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
 }
 

@@ -62,8 +62,8 @@ const AnswerCard = ({ difficulty, answers }) => {
     )
 }
 AnswerCard.propTypes = {
-    difficulty: PropTypes.number,
-    answers: PropTypes.array,
+    difficulty: PropTypes.string.isRequired,
+    answers: PropTypes.array.isRequired,
 }
 
 export default AnswerCard

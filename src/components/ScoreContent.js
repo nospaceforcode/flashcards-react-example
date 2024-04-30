@@ -24,8 +24,8 @@ const ScoreContent = ({ correct, total }) => {
     )
 }
 ScoreContent.propTypes = {
-    correct: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
+    correct: PropTypes.string.isRequired,
+    total: PropTypes.string.isRequired,
 }
 
 export default ScoreContent

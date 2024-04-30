@@ -3,6 +3,7 @@ import { FaTimes, FaCheck } from "react-icons/fa";
 import styled from 'styled-components';
 import QuestionCard from './QuestionCard';
 import AnswerCard from './AnswerCard';
+import ScoreContent from './ScoreContent';
 // import './style.css';
 
 const ProgressBar = styled.div`
@@ -207,7 +208,9 @@ const TrainPage = (autocheck) => {
                     </CardSide>
                 </div>
             </Card>
-            <Score hidden={true}></Score>
+            <Score hidden={true}>
+                <ScoreContent correct="1" total="1" />
+            </Score>
             <Answer >
                 <AnswerInput type="text"/>
                 <SubmitButton id="checkAnswer">

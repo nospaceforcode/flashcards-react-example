@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FaTimes, FaCheck } from "react-icons/fa";
 import styled from 'styled-components';
-import './style.css';
+import QuestionCard from './QuestionCard';
+// import './style.css';
 
 const ProgressBar = styled.div`
     display: -webkit-box;
@@ -197,7 +198,9 @@ const TrainPage = (autocheck) => {
                 <CardStack $num={1} />
                 <CardStack $num={2} />
                 <div id="maincard">
-                    <CardSide $cardtype={"question"} ></CardSide>
+                    <CardSide $cardtype={"question"} >
+                        <QuestionCard difficulty="1" question="What is the capital of France?" />
+                    </CardSide>
                     <CardSide $cardtype={"answer"} ></CardSide>
                 </div>
             </Card>

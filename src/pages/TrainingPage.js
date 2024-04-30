@@ -14,7 +14,7 @@ function TrainingPage() {
         editing: false,
         backlink: true,
       });
-    
+
     useEffect(() => {
         console.log('1',location.state);
         if (location.state) {

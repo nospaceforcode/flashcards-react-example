@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { FaTimes, FaCheck } from "react-icons/fa";
-import styled from 'styled-components';
-import QuestionCard from './QuestionCard';
-import AnswerCard from './AnswerCard';
-import ScoreContent from './ScoreContent';
+import React, { useState } from "react"
+import { FaTimes, FaCheck } from "react-icons/fa"
+import styled from "styled-components"
+import QuestionCard from "./QuestionCard"
+import AnswerCard from "./AnswerCard"
+import ScoreContent from "./ScoreContent"
 // import './style.css';
 
 const ProgressBar = styled.div`
@@ -18,50 +18,54 @@ const ProgressBar = styled.div`
     width: 100%;
     height: 15px;
     margin: 2px 0 50px;
-    background-color: #FDFFFC;
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
-`;
+    background-color: #fdfffc;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+`
 
 const CardBase = styled.div`
     width: 230px;
     height: 320px;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px #DADDDD;
-    border: 1px solid #8DA7BE;
-    background-color: #FDFFFC;
+    box-shadow: 1px 1px 10px #dadddd;
+    border: 1px solid #8da7be;
+    background-color: #fdfffc;
     backface-visibility: hidden;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
-    color: #50514F;
-`;
+    font-family: "Roboto", sans-serif;
+    color: #50514f;
+`
 
 const Card = styled(CardBase)`
     display: flex;
     flex-direction: column;
     perspective: 1000px;
     margin: 20px auto 50px;
-`;
+`
 
 const CardStack = styled(CardBase)`
     position: absolute;
-    ${props => props.$num && `
+    ${(props) =>
+        props.$num &&
+        `
         z-index: ${-1 * props.$num};
         top: ${-4 * props.$num}px;
         left: ${4 * props.$num}px;
     `}
-`;
+`
 
 const CardSide = styled(CardBase)`
     position: absolute;
     top: 0;
     left: 0;
-    ${props => props.$cardtype && props.$cardtype === "question" ? `
+    ${(props) =>
+        props.$cardtype && props.$cardtype === "question"
+            ? `
         z-index: 2;
         transform: rotateY(0deg);
-    ` : `transform: rotateY(180deg);`}
-`;
-
+    `
+            : `transform: rotateY(180deg);`}
+`
 
 const Score = styled.div`
     position: relative;
@@ -78,11 +82,11 @@ const Score = styled.div`
     height: 320px;
     margin: 0 auto;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
-    ${props => props.hidden && `display: none;`}
-`;
+    font-family: "Roboto", sans-serif;
+    ${(props) => props.hidden && `display: none;`}
+`
 
-const Answer= styled.div`
+const Answer = styled.div`
     display: -webkit-box;
     display: -moz-box;
     display: -webkit-flex;
@@ -93,7 +97,7 @@ const Answer= styled.div`
     justify-content: center;
     width: 90%;
     margin: 0 auto;
-`;
+`
 
 const AnswerInput = styled.input`
     height: 1.5em;
@@ -103,12 +107,12 @@ const AnswerInput = styled.input`
     border: none;
     border-bottom: 1px solid #9e9e9e;
     font-size: 26px;
-    font-family: 'Roboto', sans-serif;
-    color: #6A6B68;
+    font-family: "Roboto", sans-serif;
+    color: #6a6b68;
     line-height: normal;
     background-color: transparent;
     outline: none;
-`;
+`
 
 const ButtonBase = styled.button`
     height: 36px;
@@ -116,44 +120,47 @@ const ButtonBase = styled.button`
     padding: 0 16px;
     border-radius: 2px;
     border: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 14px;
     text-transform: uppercase;
-    background-color: #8DA7BE;
-    color: #FDFFFC;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    background-color: #8da7be;
+    color: #fdfffc;
+    box-shadow:
+        0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 1px 5px 0 rgba(0, 0, 0, 0.12),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     &:hover {
-        background-color: #A3B7C9;
+        background-color: #a3b7c9;
     }
-`;
+`
 
 const SubmitButton = styled(ButtonBase)`
     width: 250px;
     margin: 30px auto 0;
-`;
+`
 
 const RetryButton = styled(ButtonBase)`
     display: block;
     width: 250px;
     margin: 40px auto 0;
-    ${props => props.hidden && `display: none;`}
-`;
+    ${(props) => props.hidden && `display: none;`}
+`
 
 const ShuffleButton = styled(ButtonBase)`
     display: block;
     width: 250px;
     margin: 30px auto 0;
-    border: 1px solid #8DA7BE;
+    border: 1px solid #8da7be;
     box-shadow: none;
-    color: #8DA7BE;
-    background-color: #FDFFFC;
+    color: #8da7be;
+    background-color: #fdfffc;
     &:hover {
         background-color: #56728b;
-        color: #FDFFFC;
+        color: #fdfffc;
     }
-`;
+`
 
 const AnswerNext = styled.div`
     display: -webkit-box;
@@ -165,34 +172,34 @@ const AnswerNext = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 300px;
-    ${props => props.hidden && `display: none;`}
-`;
+    ${(props) => props.hidden && `display: none;`}
+`
 
 const SelfCheckButton = styled.button`
-  position: relative;
-  box-sizing: border-box;
-  width: 48%;
-  margin: 30px 0 0;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: left;
+    position: relative;
+    box-sizing: border-box;
+    width: 48%;
+    margin: 30px 0 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 33px;
-    height: 36px;
-    border-left: 1px dashed #FDFFFC;
-  }
-`;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 33px;
+        height: 36px;
+        border-left: 1px dashed #fdfffc;
+    }
+`
 
 const SelfCheckIcon = styled.i`
-  margin-right: 16px;
-`;
+    margin-right: 16px;
+`
 
 const TrainPage = (autocheck) => {
-    const [isAutoCheck] = useState(autocheck);
+    const [isAutoCheck] = useState(autocheck)
     return (
         <>
             <ProgressBar />
@@ -200,10 +207,10 @@ const TrainPage = (autocheck) => {
                 <CardStack $num={1} />
                 <CardStack $num={2} />
                 <div id="maincard">
-                    <CardSide $cardtype={"question"} >
+                    <CardSide $cardtype={"question"}>
                         <QuestionCard difficulty="1" question="What is the capital of France?" />
                     </CardSide>
-                    <CardSide $cardtype={"question"} >
+                    <CardSide $cardtype={"answer"}>
                         <AnswerCard autocheck={isAutoCheck} outcome="correct" difficulty="1" answers={["Paris"]} />
                     </CardSide>
                 </div>
@@ -211,25 +218,21 @@ const TrainPage = (autocheck) => {
             <Score hidden={true}>
                 <ScoreContent correct="1" total="1" />
             </Score>
-            <Answer >
-                <AnswerInput type="text"/>
-                <SubmitButton id="checkAnswer">
-                    Go &gt;
-                </SubmitButton>
+            <Answer>
+                <AnswerInput type="text" />
+                <SubmitButton id="checkAnswer">Go &gt;</SubmitButton>
                 <AnswerNext id="nextButtons" hidden={true}>
                     {isAutoCheck ? (
-                        <SubmitButton id="nextCard" >
-                            Next
-                        </SubmitButton>
+                        <SubmitButton id="nextCard">Next</SubmitButton>
                     ) : (
                         <>
-                            <SelfCheckButton id="wrongAnswer" >
+                            <SelfCheckButton id="wrongAnswer">
                                 <SelfCheckIcon aria-hidden="true">
                                     <FaTimes />
                                 </SelfCheckIcon>
                                 I was wrong
                             </SelfCheckButton>
-                            <SelfCheckButton id="correctAnswer" >
+                            <SelfCheckButton id="correctAnswer">
                                 <SelfCheckIcon aria-hidden="true">
                                     <FaCheck />
                                 </SelfCheckIcon>
@@ -242,11 +245,9 @@ const TrainPage = (autocheck) => {
             <RetryButton id="retry" hidden={false}>
                 Retry Wrong Answers
             </RetryButton>
-            <ShuffleButton id="shuffle" >
-                Shuffle and Start Again
-            </ShuffleButton>
+            <ShuffleButton id="shuffle">Shuffle and Start Again</ShuffleButton>
         </>
-    );
-};
+    )
+}
 
-export default TrainPage;
+export default TrainPage

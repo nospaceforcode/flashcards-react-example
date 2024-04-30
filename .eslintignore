@@ -1,0 +1,4 @@
+node_modules/
+public/**/*.js
+src/flashcards.js
+src/templates/*.js

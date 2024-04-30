@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-import { FaPlus } from "react-icons/fa";
-import { BsPencilSquare } from "react-icons/bs";
-import { difficon } from './Chore';
-import styled from 'styled-components';
-
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import { FaPlus } from "react-icons/fa"
+import { BsPencilSquare } from "react-icons/bs"
+import { difficon } from "./Chore"
+import styled from "styled-components"
+import PropTypes from "prop-types"
 
 const DeckNavigator = styled.nav`
     display: -ms-grid;
@@ -18,8 +18,8 @@ const DeckNavigator = styled.nav`
 
 const DeckContainer = styled.div`
     position: relative;
-	width: 100%;
-	max-width: 280px;
+    width: 100%;
+    max-width: 280px;
 `
 
 const DeckContainerPadding = styled.div`
@@ -31,7 +31,7 @@ const DeckEditLink = styled(Link)`
     top: 8px;
     right: 5px;
     z-index: 10;
-    color: #8DA7BE;
+    color: #8da7be;
     padding: 5px;
     text-decoration: none;
 `
@@ -52,20 +52,20 @@ const DeckLink = styled(Link)`
     justify-content: center;
     flex-shrink: 0;
     border-radius: 10px;
-    box-shadow: 1px 1px 10px #DADDDD;
-    border: 2px solid #8DA7BE;
+    box-shadow: 1px 1px 10px #dadddd;
+    border: 2px solid #8da7be;
     overflow: hidden;
-    background-color: #FDFFFC;
+    background-color: #fdfffc;
     text-decoration: none;
-    color: #50514F;
+    color: #50514f;
     transition: all 0.5s;
     &:hover {
-        box-shadow: 2px 2px 20px 3px #DADDDD;
+        box-shadow: 2px 2px 20px 3px #dadddd;
     }
 `
 
 const DeckTitle = styled.h2`
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 300;
     text-decoration: none;
     text-align: center;
@@ -74,13 +74,13 @@ const DeckTitle = styled.h2`
 
 const DeckDifficulty = styled.p`
     margin: 15px 0 0;
-    color: #F6993F;
+    color: #f6993f;
     text-align: center;
 `
 
 const DeckNumofCards = styled.p`
     margin: 10px 0 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 300;
     text-align: center;
 `
@@ -104,67 +104,73 @@ const CreateNewDeckLink = styled(Link)`
     // box-shadow: 1px 1px 10px #DADDDD;
     // border: 2px solid #8DA7BE;
     overflow: hidden;
-    background-color: #FDFFFC;
+    background-color: #fdfffc;
     text-decoration: none;
     // color: #50514F;
     transition: all 0.5s;
-    border: 1px dashed #DADDDD;
-    box-shadow: inset 0 0 2px #DADDDD;
-    color: #8DA7BE;
+    border: 1px dashed #dadddd;
+    box-shadow: inset 0 0 2px #dadddd;
+    color: #8da7be;
     &:hover {
         // box-shadow: 2px 2px 20px 3px #DADDDD;
-        box-shadow: inset 0 0 8px 1px #DADDDD;
-        color: #50514F;
+        box-shadow: inset 0 0 8px 1px #dadddd;
+        color: #50514f;
     }
 `
 
 const DeckMenu = ({ deck }) => {
-    const [deckList] = useState(deck);
+    const [deckList] = useState(deck)
 
     return (
         <DeckNavigator className="deckmenu">
-            {deckList && deckList.map((item, index) => (
-                <DeckContainer key={index}>
-                    <DeckContainerPadding />
-                    <DeckEditLink to={{
-                            pathname: `/edit/${item.name}`
+            {deckList &&
+                deckList.map((item, index) => (
+                    <DeckContainer key={index}>
+                        <DeckContainerPadding />
+                        <DeckEditLink
+                            to={{
+                                pathname: `/edit/${item.name}`,
                             }}
                             state={{
                                 title: item.title,
                                 name: item.name,
                                 shorttitle: item.shortname,
                                 editing: true,
-                                backlink: true
-                        }} title="Edit Deck">
-                        <BsPencilSquare className="fa-lg"/>
-                    </DeckEditLink>
-                    <DeckLink to={
-                            {pathname: `/train/${item.name}`}
-                        }
-                        state={{
-                            title: item.title,
-                            name: item.name,
-                            shorttitle: item.shortname,
-                            editing: false,
-                            backlink: true
-                        }}
-                    >
-                        <DeckTitle>{item.shortname}</DeckTitle>
-                        <DeckDifficulty title="difficulty">{difficon(item.averageDifficulty, item.name)}</DeckDifficulty>
-                        <DeckNumofCards>{item.cardLength} cards</DeckNumofCards>
-                    </DeckLink>
-                </DeckContainer>
-            ))}
+                                backlink: true,
+                            }}
+                            title="Edit Deck"
+                        >
+                            <BsPencilSquare className="fa-lg" />
+                        </DeckEditLink>
+                        <DeckLink
+                            to={{ pathname: `/train/${item.name}` }}
+                            state={{
+                                title: item.title,
+                                name: item.name,
+                                shorttitle: item.shortname,
+                                editing: false,
+                                backlink: true,
+                            }}
+                        >
+                            <DeckTitle>{item.shortname}</DeckTitle>
+                            <DeckDifficulty title="difficulty">{difficon(item.averageDifficulty, item.name)}</DeckDifficulty>
+                            <DeckNumofCards>{item.cardLength} cards</DeckNumofCards>
+                        </DeckLink>
+                    </DeckContainer>
+                ))}
             <DeckContainer>
                 <DeckContainerPadding />
                 <CreateNewDeckLink to="/editnew">
                     <DeckTitle aria-hidden="true" title="New Deck">
-                        <FaPlus className="fa-2x"/>
+                        <FaPlus className="fa-2x" />
                     </DeckTitle>
                 </CreateNewDeckLink>
             </DeckContainer>
         </DeckNavigator>
-    );
-};
+    )
+}
+DeckMenu.propTypes = {
+    deck: PropTypes.array,
+}
 
-export default DeckMenu;
+export default DeckMenu

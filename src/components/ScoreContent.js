@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import './style.css';
-
+import React from "react"
+import styled from "styled-components"
+import "./style.css"
+import PropTypes from "prop-types"
 
 const ScoreText = styled.p`
     position: absolute;
@@ -10,16 +10,22 @@ const ScoreText = styled.p`
     margin: auto 0;
     font-size: 28px;
     text-align: center;
-`;
+`
 
-const ScoreContent = ({correct, total}) => {
+const ScoreContent = ({ correct, total }) => {
     return (
         <>
             <p>All done!</p>
             <canvas id="scoreChart" width="300" height="300"></canvas>
-            <ScoreText>{correct} / {total}</ScoreText>
+            <ScoreText>
+                {correct} / {total}
+            </ScoreText>
         </>
-    );
-};
+    )
+}
+ScoreContent.propTypes = {
+    correct: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+}
 
-export default ScoreContent;
+export default ScoreContent

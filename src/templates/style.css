@@ -730,7 +730,7 @@ body {
 	.deckmenu {
 		grid-template-columns: 1fr 1fr;
 	}
-	
+
 	/* Explicit placement for IE/Edge */
 		.deckmenu__container:nth-child(2) {
 			-ms-grid-column: 2;
@@ -760,92 +760,92 @@ body {
 			-ms-grid-column: 2;
 		}
 	/* end IE/Edge grid */
-	
+
 }
 
 @media screen and (max-width: 420px) {
-  
+
   .header {
     height: 50px;
   }
-  
+
   .header__title {
     margin-left: -20px;
   }
-  
+
   .header__title--main {
     font-size: 20px;
     margin-left: 0;
   }
-  
+
   .header__link--right2 {
     right: 50px;
   }
-  
+
   .progress {
     margin-bottom: 30px;
   }
-	
+
 	.deckmenu {
 		grid-gap: 5px 10px;
 		margin-top: 20px;
   	padding: 0 5px;
 	}
-  
+
   .card {
     width: 95%;
     height: 190px;
     margin-top: 10px;
     margin-bottom: 20px;
   }
-  
+
   .card__stack,
   .card__side {
     width: 100%;
     height: 190px;
   }
-  
+
   .card__stack--1,
   .card__stack--2 {
     left: 0px;
   }
-  
+
   .card__text {
     font-size: 24px;
   }
-  
+
   .answer__input {
     width: 100%;
   }
-  
+
   .answer__next {
     width: 100%;
   }
-  
+
   .button--submit, .button--next {
     margin-top: 20px;
     width: 100%;
   }
-  
+
   .button--shuffle,
   .button--retry {
     width: 90%;
     margin-top: 20px;
   }
-  
+
   .modal__content {
     top: 200px;
     width: 96%;
     max-width: 400px;
     padding: 40px 10px 20px;
   }
-  
+
   .cardline {
     box-sizing: border-box;
     width: 100%;
     grid-gap: 10px;
   }
-  
+
   .cardline__input, .cardline__select {
     font-size: 16px;
     padding: 0;
